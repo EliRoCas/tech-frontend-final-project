@@ -95,5 +95,5 @@ class APIInvoke {
     }
 }
 
-
+//eslint-disable-next-line
 export default new APIInvoke();
