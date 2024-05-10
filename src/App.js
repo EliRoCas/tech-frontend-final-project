@@ -7,7 +7,7 @@ import Home from './Home';
 
 import './App.css';
 import ModuleShowClients from './pages/modules/ModuleShowClients';
-
+import ModuleShowProducts from './pages/modules/ModuleShowProducts';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
             <Route path='/Register' exact element={<Register />}></Route>
             <Route path='/home' exact element={<Home />}></Route>
             <Route path='/clients' exact element={<ModuleShowClients />}></Route>
+            <Route path='/products' exact element={<ModuleShowProducts />}></Route>
           </Routes>
         </Router>
       </Fragment>

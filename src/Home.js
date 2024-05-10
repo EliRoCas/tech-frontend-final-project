@@ -29,14 +29,38 @@ const Home = () => {
                                         <p>&nbsp;</p>
                                     </div>
                                     <div className="icon">
-                                        <i className="fa fa-edit"></i>
+                                        <i className="fa-solid fa-users"></i>
                                     </div>
-                                    <Link to={"/clients"} className="small-box-footer"> Ver clientes</Link>
+                                    <Link to={"/clients"} className="small-box-footer">
+                                        Ver clientes
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
+                <section className="content">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-lg-3 col-6">
+                                <div className="small-box bg-dark">
+                                    <div className="inner">
+                                        <h3>Productos</h3>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <div className="icon">
+                                        <i className="fa-solid fa-shop"></i>
+                                    </div>
+                                    <Link to={"/products"} className="small-box-footer">
+                                        Ver Productos
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
             </div>
             <Footer></Footer>
         </div>

@@ -69,7 +69,7 @@ const ModuleShowClients = () => {
             <div className="content-wrapper">
 
                 <ContentHeaderComp
-                    title={"Listado clientes"}
+                    title={"Listado de clientes"}
                     breadCrumb1={"Inicio"}
                     breadCrumb2={"Clientes"}
                     route1={"/home"}>
@@ -78,10 +78,11 @@ const ModuleShowClients = () => {
                 <section className="content">
                     <div className="card">
                         <div className="card-header">
-                            <h3 className="card-title"> <Link to={"/clients/add"}
-                                className="btn btn-block btn-primary btn-sm">
-                                <i className="fa-solid fa-user-plus"></i>
-                            </Link>
+                            <h3 className="card-title">
+                                <Link to={"/clients/add"}
+                                    className="btn btn-block btn-primary btn-sm">
+                                    <i className="fa-solid fa-user-plus"></i>
+                                </Link>
                             </h3>
 
                             <div className="card-tools">

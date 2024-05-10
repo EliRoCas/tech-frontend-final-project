@@ -24,6 +24,14 @@ const Menu = () => {
                         </p>
                     </Link>
                 </li>
+                <li className="nav-item">
+                    <Link to={"/products"} className="nav-link">
+                        <i className="nav-icon fa fa-th" />
+                        <p>
+                           Productos
+                        </p>
+                    </Link>
+                </li>
             </ul>
         </nav>
     )
