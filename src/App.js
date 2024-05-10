@@ -6,6 +6,7 @@ import Register from './pages/auth/Register';
 import Home from './Home';
 
 import './App.css';
+import ModuleShowClients from './pages/modules/ModuleShowClients';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path='/' exact element={<Login />}></Route>
             <Route path='/Register' exact element={<Register />}></Route>
             <Route path='/home' exact element={<Home />}></Route>
+            <Route path='/clients' exact element={<ModuleShowClients />}></Route>
           </Routes>
         </Router>
       </Fragment>

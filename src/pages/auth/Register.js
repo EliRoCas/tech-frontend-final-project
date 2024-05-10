@@ -92,7 +92,7 @@ const Register = () => {
                 swal({
                     title: "Información",
                     text: msg,
-                    icon: "Success",
+                    icon: "success",
                     buttons: {
                         confirm: {
                             text: "OK",
