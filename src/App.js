@@ -7,7 +7,10 @@ import Home from './Home';
 
 import './App.css';
 import ModuleShowClients from './pages/modules/ModuleShowClients';
+import ModuleAddClients from './pages/modules/ModuleAddClients';
+import ModuleEditClients from './pages/modules/ModuleEditClient,';
 import ModuleShowProducts from './pages/modules/ModuleShowProducts';
+import ModuleAddProducts from './pages/modules/ModuleAddProducts';
 
 function App() {
   return (
@@ -19,7 +22,10 @@ function App() {
             <Route path='/Register' exact element={<Register />}></Route>
             <Route path='/home' exact element={<Home />}></Route>
             <Route path='/clients' exact element={<ModuleShowClients />}></Route>
+            <Route path='/clients/add' exact element={<ModuleAddClients />}></Route>
+            <Route path='/clients/edit/:id' exact element={<ModuleEditClients/>}></Route>
             <Route path='/products' exact element={<ModuleShowProducts />}></Route>
+            <Route path='/products/add' exact element={<ModuleAddProducts />}></Route>
           </Routes>
         </Router>
       </Fragment>
