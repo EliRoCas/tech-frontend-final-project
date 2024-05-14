@@ -11,6 +11,7 @@ import ModuleAddClients from './pages/modules/ModuleAddClients';
 import ModuleEditClients from './pages/modules/ModuleEditClient,';
 import ModuleShowProducts from './pages/modules/ModuleShowProducts';
 import ModuleAddProducts from './pages/modules/ModuleAddProducts';
+import ModuleEditProduct from './pages/modules/ModuleEditProduct';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/clients/edit/:id' exact element={<ModuleEditClients/>}></Route>
             <Route path='/products' exact element={<ModuleShowProducts />}></Route>
             <Route path='/products/add' exact element={<ModuleAddProducts />}></Route>
+            <Route path='/products/edit/:id' exact element={<ModuleEditProduct />}></Route>
           </Routes>
         </Router>
       </Fragment>

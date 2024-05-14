@@ -4,50 +4,32 @@ import FooterComp from "../../components/FooterComp";
 import NavbarComp from "../../components/NavbarComp";
 import SidebarComp from "../../components/SidebarComp";
 import APIInvoke from "../../configurations/APIInvoke";
+import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
 
-const ModuleAddProducts = () => {
 
+const ModuleEditProduct = () => {
+    // Se crea la función componente, para editar los clientes
+    const [name, setName] = useState('');
+    const [type, setType] = useState('');
+    const [price, setPrice] = useState('');
+    const [over18, setOver18] = useState(false);
     const navigate = useNavigate();
+    const { id } = useParams();
 
-    //const [over18, setOver18] = useState();
-    const [products, setProducts] = useState({
-        name: '',
-        type: '',
-        price: '',
-        over18: false
 
-    })
-
-    const { name, type, price, over18 } = products;
-
-    useEffect(() => {
-        document.getElementById("name").focus();
-    }, [])
-
-    const onChange = (e) => {
-        setProducts({
-            ...products,
-            [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
+    // Se crea la función para Actualizar el elemento 
+    const editProduct = async (e) => {
+        e.preventDefault();
+        await APIInvoke.invokePUT(`/api/products/${id}`, {
+            name: name,
+            type: type,
+            price: price,
+            over18: over18
         })
-        console.log(e.target)
-    }
 
-    const addProducts = async () => {
-        const data = {
-            name: products.name,
-            type: products.type,
-            price: products.price,
-            over18: products.over18,
-        }
-
-        //console.log(data);
-        const response = await APIInvoke.invokePOST('/api/products', data);
-        const idProducts = response._id;
-
-        if (idProducts === '') {
-            const msg = "Hubo un error al agrear el producto";
+        if (id === '') {
+            const msg = "Producto no encontrado";
             swal({
                 title: "Error",
                 text: msg,
@@ -65,7 +47,7 @@ const ModuleAddProducts = () => {
         } else {
             navigate("/products");
 
-            const msg = "El producto fue agregado con éxito";
+            const msg = "El producto fue editado con éxito";
             swal({
                 title: "Information",
                 text: msg,
@@ -79,20 +61,21 @@ const ModuleAddProducts = () => {
                         closeModal: true
                     }
                 }
-            });
-
-            setProducts({
-                name: '',
-                type: '',
-                price: '',
-                over18: false
-            });
+            })
         }
-    }
+    };
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        addProducts();
+    useEffect(() => {
+        console.log('effect')
+        getProductsID()
+    }, []);
+
+    const getProductsID = async () => {
+        const result = await APIInvoke.invokeGET(`/api/products/${id}`)
+        setName(result.name)
+        setType(result.type)
+        setPrice(result.price)
+        setOver18(result.over18)
     }
 
 
@@ -103,10 +86,10 @@ const ModuleAddProducts = () => {
 
             <div className="content-wrapper">
                 <ContentHeaderComp
-                    title={"Agregar Producto"}
+                    title={"Editar Producto"}
                     breadCrumb1={"Listado de Productos"}
-                    breadCrumb2={"agregar"}
-                    route1={"/products/add"}>
+                    breadCrumb2={"Editar"}
+                    route1={"/products/edit"}>
                 </ContentHeaderComp>
 
                 <section className="content">
@@ -129,7 +112,7 @@ const ModuleAddProducts = () => {
                         </div>
 
                         <div className="card-body">
-                            <form onSubmit={onSubmit}>
+                            <form onSubmit={editProduct}>
 
                                 <div className="card-body">
                                     <div className="form-group">
@@ -144,7 +127,7 @@ const ModuleAddProducts = () => {
                                                 name="name"
                                                 placeholder="Ingrese el nombre del producto"
                                                 value={name}
-                                                onChange={onChange}
+                                                onChange={(e) => setName(e.target.value)}
                                                 required>
                                             </input>
 
@@ -160,7 +143,7 @@ const ModuleAddProducts = () => {
                                 <div className="card-body">
                                     <div className="form-group">
                                         <label htmlFor="type">
-                                            Tipo
+                                            Tipo de producto
                                         </label>
                                         <div className="input-group">
                                             <input
@@ -168,9 +151,9 @@ const ModuleAddProducts = () => {
                                                 className="form-control"
                                                 id="type"
                                                 name="type"
-                                                placeholder="Ingrese el tipo al que pertenece el producto"
+                                                placeholder="Ingrese la categoría del producto"
                                                 value={type}
-                                                onChange={onChange}
+                                                onChange={(e) => setType(e.target.value)}
                                                 required>
                                             </input>
 
@@ -194,9 +177,9 @@ const ModuleAddProducts = () => {
                                                 className="form-control"
                                                 id="price"
                                                 name="price"
-                                                placeholder="Ingrese el precio del producto"
+                                                placeholder="Ingrese el precio por unidad"
                                                 value={price}
-                                                onChange={onChange}
+                                                onChange={(e) => setPrice(e.target.value)}
                                                 required>
                                             </input>
 
@@ -221,7 +204,7 @@ const ModuleAddProducts = () => {
                                                 id="over18"
                                                 name="over18"
                                                 checked={over18}
-                                                onChange={onChange}
+                                                onChange={(e) => setOver18(e.target.checked)}
                                             >
                                             </input>
 
@@ -237,9 +220,8 @@ const ModuleAddProducts = () => {
 
                                 <div className="card-footer">
                                     <button type="submit" className="btn btn-primary">
-                                        <i className="fa-solid fa-floppy-disk"></i>
+                                        <i className="fa-solid fa-user-pen"></i>
                                     </button>
-
                                 </div>
 
                             </form>
@@ -252,4 +234,5 @@ const ModuleAddProducts = () => {
     )
 }
 
-export default ModuleAddProducts;
+
+export default ModuleEditProduct;

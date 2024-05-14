@@ -46,3 +46,17 @@
   width: 3rem;
 }
 
+
+div .check {
+  display: inline-flex;
+  align-items: center;
+}
+
+div .form-group .form-check-input {
+  align-content: center;
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.2em solid #000000;
+  margin-left: 3.75rem;
+}
